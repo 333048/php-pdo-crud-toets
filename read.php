@@ -49,7 +49,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PHP PDO CRUD</title>
-
     <style>
         body {
             background-color: #242424;
