@@ -74,6 +74,16 @@
             color: #000;
             margin: 10px 10px 10px 10px;
         }
+        #terug    {
+            color: #FFF;
+            text-decoration: none;
+            font-size: 18px;
+            border: 1px solid #FFF;
+            border-radius: 5px;
+            background-color: #242424;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px;
+        }
     </style>
 </head>
 <body id="read">
@@ -90,5 +100,8 @@
             <?= $rows; ?>
         </tbody>
     </table>
+    <br>
+    <br>
+    <a href="index.php" id="terug">Terug</a>
 </body>
 </html>
