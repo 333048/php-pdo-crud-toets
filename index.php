@@ -34,8 +34,6 @@
 </head>
 <body id="index">
     <h1>PHP PDO CRUD</h1>
-
     <a href="read.php">Tabel ></a>
-
 </body>
 </html>
