@@ -1,5 +1,5 @@
 <?php
- 
+
   require('config.php');
 
   $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
@@ -30,16 +30,16 @@
   $rows = "";
   foreach ($result as $i) {
     $rows .= "<tr>
-                <td>$i->Merk</td>
-                <td>$i->Model</td>
-                <td>$i->Topsnelheid</td>
-                <td>$i->Prijs</td>
-                <td>
-                    <a href='delete.php?Id=$i->Id'>
-                        <img src='fotos/kruis.png' alt='kruis'>
-                    </a>
-                </td>
-              </tr>";
+            <td>$i->Merk</td>
+            <td>$i->Model</td>
+            <td>$i->Topsnelheid</td>
+            <td>$i->Prijs</td>
+            <td>
+                <a href='delete.php?Id=$i->Id'>
+                    <button>X</button>
+                </a>
+            </td>
+            </tr>";
   }
   
 
@@ -56,7 +56,7 @@
     <title>PHP PDO CRUD</title>
 </head>
 <body>
-    <h3>De vijf duurste auto's ter wereld</h3>
+    <h3>Vijf duurste auto ter wereld!</h3>
     <table border='1'>
         <thead>
             <th>Merk</th>
