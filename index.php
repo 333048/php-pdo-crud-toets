@@ -9,11 +9,7 @@
 <body>
     <h1>PHP PDO CRUD</h1>
 
-    <a href="create.php">Create</a>
-    <br>
-    <a href="read.php">Read</a>
-    <br>
-    <a href="update.php">Update</a>
+    <a href="read.php">Tabel ></a>
 
 </body>
 </html>

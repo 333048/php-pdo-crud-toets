@@ -1,66 +1,73 @@
 <?php
-    require('config.php');
+ 
+  require('config.php');
 
-    $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
+  $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
 
-    try {
-        $pdo = new PDO($dsn, $dbUser, $dbPass);
-
-        if ($pdo) {
-            echo "Verbinding met de database is gelukt";
-        } else {
-            echo "Verbinding met de database is mislukt";
-        }
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+  try {
+    $pdo = new PDO($dsn, $dbUser, $dbPass);
+    if ($pdo) {
+        echo "Verbinding gelukt";
+    } else {
+        echo "Verbinding mislukt";
     }
+  } catch(PDOException $e) {
+    echo $e->getMessage();
+  }
+  $sql = "SELECT Id
+                ,Merk
+                ,Model
+                ,Topsnelheid
+                ,Prijs
+          FROM DureAuto";
 
-    $sql = "SELECT * FROM Persoon";
+  $statement = $pdo->prepare($sql);
 
-    $statement = $pdo->prepare($sql);
+  $statement->execute();
+  
+  $result = $statement->fetchAll(PDO::FETCH_OBJ);
 
+  $rows = "";
+  foreach ($result as $i) {
+    $rows .= "<tr>
+                <td>$i->Merk</td>
+                <td>$i->Model</td>
+                <td>$i->Topsnelheid</td>
+                <td>$i->Prijs</td>
+                <td>
+                    <a href='delete.php?Id=$i->Id'>
+                        <img src='fotos/kruis.png' alt='kruis'>
+                    </a>
+                </td>
+              </tr>";
+  }
+  
 
-    $statement->execute();
-    $result = $statement->fetchAll(PDO::FECTH_OBJ);
-
-    var_dump($result);
-
-    $row = "";
-
-    foreach ($result as $info) {
-        $row .= "<tr>
-                    <td>$info->Id</td>
-                    <td>$info->Voornaam</td>
-                    <td>$info->Tussenvoegsel</td>
-                    <td>$info->Achternaam</td>
-                    <td>
-                        <a href='edit.php?'>
-                        <img src='img/edit.png' alt='edit' width='20px'>
-                        </a>
-                    </td>
-                    <td>
-                        <a href='delete.php?id=" . $info->Id . "'>
-                        <img src='img/delete.png' alt='delete' width='20px'>
-                        </a>
-                    </td>
-                </tr>";
-    }
 
 
 ?>
 
-<h3>Persoonsgegevens</h3>
-<br>
-<a href="index.php"><input type="text"><button>Nieuw Persoon</button></input></a>
-<br><br>
-<table border="1">
-    <thead>
-        <th>Id</th>
-        <th>Voornaam</th>
-        <th>Tussenvoegsel</th>
-        <th>Achternaam</th>
-    </thead>
-    <tbody>
-        <?= $rows; ?>
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP PDO CRUD</title>
+</head>
+<body>
+    <h3>De vijf duurste auto's ter wereld</h3>
+    <table border='1'>
+        <thead>
+            <th>Merk</th>
+            <th>Model</th>
+            <th>Topsnelheid</th>
+            <th>Prijs</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <?= $rows; ?>
+        </tbody>
+    </table>
+</body>
+</html>
