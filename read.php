@@ -22,9 +22,7 @@
           FROM DureAuto";
 
   $statement = $pdo->prepare($sql);
-
   $statement->execute();
-  
   $result = $statement->fetchAll(PDO::FETCH_OBJ);
 
   $rows = "";
@@ -53,7 +51,6 @@
     <title>PHP PDO CRUD</title>
 
     <style>
-
         body {
             background-color: #242424;
             margin-right: 50rem;
@@ -82,7 +79,6 @@
 </head>
 <body id="read">
     <h3>Vijf duurste auto ter wereld!</h3>
-
     <table border='1'>
         <thead>
             <th>Merk</th>
@@ -91,7 +87,6 @@
             <th>Prijs</th>
             <th>Delete</th>
         </thead>
-
         <tbody>
             <?= $rows; ?>
         </tbody>
