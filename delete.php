@@ -4,14 +4,14 @@
     try {
         $pdo = new PDO($dsn, $dbUser, $dbPass);
         if ($pdo) {
-            echo "Gelukt!";
+            echo "Verbinding is gelukt!";
         } else {
-            echo "Niet gelukt!";
+            echo "Verbinding is niet gelukt!";
         }
     } catch(PDOException $e) {
         $e->getMessage();
     }
-    $sql = "DELETE FROM DureAuto
+    $sql = "DELETE FROM dureauto
             WHERE Id = :Id";
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':Id', $_GET['Id'], PDO::PARAM_INT);
